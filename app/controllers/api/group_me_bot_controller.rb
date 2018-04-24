@@ -7,7 +7,7 @@ module Api
     end
 
     def process_message
-      send_message(BOT_ID, 'Hello')
+      send_message(BOT_ID, params.to_s)
     end
   end
 end
