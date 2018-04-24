@@ -1,0 +1,33 @@
+<form class="row">
+  <div>
+    Street Address
+    <br>
+    <input type="string" name="address">
+  </div>
+  <div>
+    Zipcode
+    <br>
+    <input type="number" name="zipcode" min="1" max="99999">
+  </div>
+  <div class="banana">
+    <input type="submit">
+  </div>
+</form>
+<h1>Results:</h1>
+<div>
+  <table>
+    <tr>
+      <td>
+        <div class="row">
+          <div class="column">
+            <%= "High Estimate: #{@data[:high]}" %>
+            <br>
+            <%= "Low Estimate: #{@data[:low]}" %>
+            <br>
+            <%= "Zestimate: #{@data[:estimate]}" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
