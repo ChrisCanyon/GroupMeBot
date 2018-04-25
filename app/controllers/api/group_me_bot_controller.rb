@@ -19,7 +19,7 @@ module Api
 
       def get_bot
         return @group.bot if @group.bot.present?
-        Bot.create(group: @group, external_id: params[:bot_id])
+        Bot.create(group: @group, bot_id: params[:bot_id])
       end
 
       def get_user
