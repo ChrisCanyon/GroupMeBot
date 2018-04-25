@@ -40,7 +40,7 @@ module Api
       def process_message
         if params[:text].slice!(0) == '/'
           parsed_params = params[:text].split
-          run_command(parsed_params, @group_member, @user, @group, @bot) if @bot.active_commands.inlcude?(parsed_params[0])
+          run_command(parsed_params, @group_member, @user, @group, @bot) if @bot.active_commands.include?(parsed_params[0])
         end
       end
   end
