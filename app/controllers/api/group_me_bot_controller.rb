@@ -4,6 +4,7 @@ module Api
       setup
       process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
     end
+
     private
       def setup
         @group = get_group
@@ -26,7 +27,7 @@ module Api
       end
 
       def get_group_member
-        @group.group_members.find_or_create_by(group: group, user: user, external_id: 1)
+        @group.group_members.find_or_create_by(group: @group, user: @user, external_id: 1)
       end
 
       def process_message
