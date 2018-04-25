@@ -31,10 +31,10 @@ module Api
       end
 
       def process_message
-        send_message(@bot.external_id, @group.to_s)
-        send_message(@bot.external_id, @bot.to_s)
-        send_message(@bot.external_id, @user.to_s)
-        send_message(@bot.external_id, @group_member.to_s)
+        send_message(@bot.bot_id, @group.to_s)
+        send_message(@bot.bot_id, @bot.to_s)
+        send_message(@bot.bot_id, @user.to_s)
+        send_message(@bot.bot_id, @group_member.to_s)
       end
   end
 end
