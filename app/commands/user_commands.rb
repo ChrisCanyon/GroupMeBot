@@ -1,4 +1,4 @@
-module UserCommandCenterHelper
+module UserCommandCenter
   include GroupmeBotHelper
 
   COMMANDS = ["/usage", "/highscore", "/request", "/price", "/stake", "/roll"]

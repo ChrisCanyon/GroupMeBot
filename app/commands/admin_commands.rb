@@ -1,4 +1,4 @@
-module AdminCommandCenterHelper
+module AdminCommands
   include GroupmeBotHelper
 
   ADMIN_COMMANDS = ["!test", "!revoke", "!grant"]

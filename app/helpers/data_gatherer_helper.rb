@@ -1,3 +1,0 @@
-module DataGathererHelper
-
-end

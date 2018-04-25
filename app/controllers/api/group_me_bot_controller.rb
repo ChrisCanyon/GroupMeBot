@@ -1,10 +1,10 @@
 module Api
   class GroupMeBotController < Api::BaseController
+    include CentralCommandCenter
+
     def index
-      Thread.new {
-        setup
-        process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
-      }
+      setup
+      process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
     end
 
     private
@@ -38,10 +38,10 @@ module Api
       end
 
       def process_message
-        send_message(@bot.bot_id, @group.to_json)
-        send_message(@bot.bot_id, @bot.to_json)
-        send_message(@bot.bot_id, @user.to_json)
-        send_message(@bot.bot_id, @group_member.to_json)
+        if params[:text].slice!(0) == '/'
+          parsed_params = params[:text].split
+          run_command(parsed_params, @group_member, @user, @group, @bot) if @bot.active_commands.inlcude?(parsed_params[0])
+        end
       end
   end
 end
