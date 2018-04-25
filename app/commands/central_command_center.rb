@@ -1,7 +1,6 @@
 module CentralCommandCenter
   include GroupmeBotHelper
-  include AdminCommandCenter
-  include UserCommandCenter
+  include BasicCommands
 
   def run_command(input, group_member, user, group, bot)
     @group = group
