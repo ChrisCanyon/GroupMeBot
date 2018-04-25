@@ -4,9 +4,10 @@ class CreateGroupMembers < ActiveRecord::Migration[5.1]
       t.string :external_id
       t.string :old_names, array: true, default: []
       t.string :saved_message_ids, array: true, default: []
-      t.string :access_level, default: 'user'
-
+      t.string :access_level
       t.string :name
+      t.integer :user_id
+      t.integer :group_id
       t.timestamps
     end
   end

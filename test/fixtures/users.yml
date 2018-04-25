@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  groupme_id: MyString
-  name: MyString
-  messages: 1
+  external_id: MyString
 
 two:
-  groupme_id: MyString
-  name: MyString
-  messages: 1
+  external_id: MyString

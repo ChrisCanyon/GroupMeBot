@@ -1,2 +1,0 @@
-class OsrsItem < ApplicationRecord
-end
