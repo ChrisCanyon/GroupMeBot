@@ -24,9 +24,7 @@ module CentralCommandCenter
   def add_library(parameters = [])
     return send_message(@bot.bot_id, "Usage: /add_library library_name1 library_name2 ...") if parameters.count < 1
     parameters.each do |library|
-      case library
-      when LIBRARIES[0]
-      end
+      send_message(@bot.bot_id, LIBRARIES['runescape'].to_s)
     end
   end
 
