@@ -21,7 +21,7 @@ module CentralCommandCenter
     self.send(input[0], parameters)
   end
 
-  def list_libraries
+  def list_libraries(parameters = nil)
     send_message(@bot.bot_id, "Libraries:\n#{LIBRARIES.keys.join('\n')}")
   end
 
@@ -37,7 +37,7 @@ module CentralCommandCenter
     end
   end
 
-  def refresh_libraries
+  def refresh_libraries(parameters = nil)
 
   end
 
