@@ -35,6 +35,7 @@ module CentralCommandCenter
         @bot.active_libraries << library
       end
     end
+    @bot.save
   end
 
   def refresh_libraries(parameters = nil)
