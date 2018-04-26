@@ -31,9 +31,7 @@ module CentralCommandCenter
       next if @bot.active_libraries.include?(library)
       commands = LIBRARIES[library]
       unless commands.blank?
-        commands.each do |command|
-          @bot.active_commands << command
-        end
+        @bot.active_commands = @bot.active_commands + commands
         @bot.active_libraries << library
       end
     end
