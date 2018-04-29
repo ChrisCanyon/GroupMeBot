@@ -1,6 +1,11 @@
 module Runescape
   include GroupmeBotHelper
-  RUNESCAPE_COMMANDS = [:test, :update]
+
+  RUNESCAPE_COMMANDS = [:runescape, :test, :update]
+
+  def runescape(parameters = nil)
+    send_message(@bot.bot_id, "it works")
+  end
 
   def test(parameters = nil)
     p 'ello'
