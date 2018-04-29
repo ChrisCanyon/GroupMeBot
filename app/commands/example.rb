@@ -1,10 +1,10 @@
-module libraryName
+module LibraryName
   include GroupmeBotHelper
 
   LIBRARYNAME_COMMANDS = [:library_name, :command1, :command2, :commandX]
 
   def library_name(parameters = nil)
-    
+
   end
 
   def command1(parameters = nil)
