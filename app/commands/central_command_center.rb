@@ -42,6 +42,7 @@ module CentralCommandCenter
     @bot.active_libraries.each do |library|
       @bot.active_commands = @bot.active_commands - LIBRARIES[library] + LIBRARIES[library]
     end
+    @bot.save
   end
 
   private
