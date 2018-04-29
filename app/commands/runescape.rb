@@ -3,7 +3,7 @@ module Runescape
 
   RUNESCAPE_COMMANDS = [:runescape, :test, :update]
 
-  def runescape(parameters = nil)
+  def as(parameters = nil)
     send_message(@bot.bot_id, "it works")
   end
 
