@@ -39,7 +39,9 @@ module CentralCommandCenter
   end
 
   def refresh_libraries(parameters = nil)
-
+    @bot.active_libraries.each do |library|
+      @bot.active_commands = @bot.active_commands - LIBRARIES[library] + LIBRARIES[library]
+    end
   end
 
   private
