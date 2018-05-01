@@ -21,7 +21,7 @@ module CentralCommandCenter
     self.send(input[0], parameters)
   end
 
-  def list_libraries(parameters = nil)
+  def libraries(parameters = nil)
     send_message(@bot.bot_id, "Libraries:\n#{LIBRARIES.keys.join("\n")}")
   end
 
@@ -30,7 +30,7 @@ module CentralCommandCenter
   end
 
   def add_library(parameters = [])
-    return send_message(@bot.bot_id, "Usage: /add_library library_name1 library_name2 ...") if parameters.count < 1
+    return send_message(@bot.bot_id, "Usage: /add_library library_name1 library_name2 ...") unless parameters
     parameters.each do |library|
       next if @bot.active_libraries.include?(library)
       commands = LIBRARIES[library]
