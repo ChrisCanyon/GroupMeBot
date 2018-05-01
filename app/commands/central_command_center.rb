@@ -49,6 +49,7 @@ module CentralCommandCenter
   end
 
   def remove_library(parameters = nil)
+    p "removing libraries #{parameters}"
     @bot.active_libraries - parameters
     @bot.save
     refresh_libraries
