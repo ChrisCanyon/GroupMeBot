@@ -22,11 +22,11 @@ module CentralCommandCenter
   end
 
   def list_libraries(parameters = nil)
-    send_message(@bot.bot_id, "Libraries:\n#{LIBRARIES.keys.join('\n')}")
+    send_message(@bot.bot_id, "Libraries:\n#{LIBRARIES.keys.join("\n")}")
   end
 
   def commands(parameters = nil)
-    send_message(@bot.bot_id, "Commands:\n#{@bot.active_commands.join('\n')}")
+    send_message(@bot.bot_id, "Commands:\n#{@bot.active_commands.join("\n")}")
   end
 
   def add_library(parameters = [])
