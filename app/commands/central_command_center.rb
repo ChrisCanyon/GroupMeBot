@@ -43,7 +43,8 @@ module CentralCommandCenter
     send_message(@bot.bot_id, 'Libraries added') if print
   end
 
-  def active_libraries
+  def active_libraries(parameters = nil)
+    return send_message(@bot.bot_id, "No active libraries") unless @bot.active_libraries.count > 0
     send_message(@bot.bot_id, "Active Libraries:\n#{@bot.active_libraries.join("\n")}")
   end
 
