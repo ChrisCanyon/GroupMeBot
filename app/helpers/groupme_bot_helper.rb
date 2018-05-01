@@ -9,7 +9,7 @@ module GroupmeBotHelper
   end
 
   def send_message(bot_id, message, attachments = {})
-    p http.post(SEND_MESSAGE_PATH, { bot_id: bot_id, text: message, attachments: attachments }.to_json, HEADERS)
+    http.post(SEND_MESSAGE_PATH, { bot_id: bot_id, text: message, attachments: attachments }.to_json, HEADERS)
   end
 
   def http
