@@ -12,12 +12,12 @@ module Runescape
     end
   end
 
-  def stake
+  def stake(parameters = nil)
     options = ['win', 'lose']
     send_message(@bot.bot_id, "You #{options.sample}")
   end
 
-  def price
+  def price(parameters = nil)
     item_name = params[:text].downcase.split(' ')
     item_name.delete_at(0)
     item = search_items(item_name.join(' ').downcase)

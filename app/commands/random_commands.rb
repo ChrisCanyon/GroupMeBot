@@ -1,5 +1,5 @@
 
-  def roll
+  def roll(parameters = nil)
     begin
       x = params[:text].downcase.split(' ')[1].to_i
       send_message(@bot_id, "#{rand(x)}")
@@ -8,7 +8,7 @@
     end
   end
 
-  def high_score
+  def high_score(parameters = nil)
     string_builder = "High Score:\n"
     users = User.all.map { |user| [user.name,user.messages.count] }
     users.sort!{ |x,y| y[1] <=> x[1] }
@@ -23,7 +23,7 @@
     "Request saved!"
   end
 
-  def grant
+  def grant(parameters = nil)
     send_message(@bot_id, "Usage: Tag someone to grant") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
     groupme_ids.each do |id|
@@ -33,7 +33,7 @@
     send_message(@bot_id, "Permission(s) granted")
   end
 
-  def revoke
+  def revoke(parameters = nil)
     send_message(@bot_id, "Usage: Tag someone to revoke") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
     p groupme_ids
