@@ -43,10 +43,14 @@ module CentralCommandCenter
     send_message(@bot.bot_id, 'Libraries added') if print
   end
 
+  def active_libraries
+    send_message(@bot.bot_id, "Active Libraries:\n#{@bot.active_libraries.join("\n")}")
+  end
+
   def remove_library(parameters = nil)
     @bot.active_libraries - parameters
-    refresh_libraries
     @bot.save
+    refresh_libraries
     send_message(@bot.bot_id, 'Libraries removed')
   end
 
