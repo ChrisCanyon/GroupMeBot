@@ -11,6 +11,4 @@ module Runescape
       send_message(@bot.bot_id, message)
     end
   end
-
-  
 end

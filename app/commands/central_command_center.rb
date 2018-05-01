@@ -29,7 +29,7 @@ module CentralCommandCenter
     send_message(@bot.bot_id, "Commands:\n#{@bot.active_commands.join("\n")}")
   end
 
-  def add_library(parameters = [])
+  def add_library(parameters = [], print=true)
     return send_message(@bot.bot_id, "Usage: /add_library library_name1 library_name2 ...") unless parameters
     parameters.each do |library|
       next if @bot.active_libraries.include?(library)
@@ -40,22 +40,18 @@ module CentralCommandCenter
       end
     end
     @bot.save
+    send_message(@bot.bot_id, 'Libraries added') if print
   end
 
   def remove_library(parameters = nil)
     @bot.active_libraries - parameters
     refresh_libraries
     @bot.save
+    send_message(@bot.bot_id, 'Libraries removed')
   end
 
   def refresh_libraries(parameters = nil)
-    @bot.active_commands = []
-    @bot.active_libraries.each do |library|
-      @bot.active_commands << LIBRARIES[library]
-    end
-    @bot.save
+    @bot.active_commands = Bot.new.active_commands
+    add_library(@bot.active_libraries, false)
   end
-
-  private
-
 end
