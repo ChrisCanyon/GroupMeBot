@@ -49,8 +49,9 @@ module CentralCommandCenter
   end
 
   def remove_library(parameters = nil)
-    p "removing libraries #{parameters}"
-    @bot.active_libraries - parameters
+    parameters.each do |library|
+      @bot.active_libraries.delete(library)
+    end
     @bot.save
     refresh_libraries
     send_message(@bot.bot_id, 'Libraries removed')
