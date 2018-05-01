@@ -38,9 +38,16 @@ module CentralCommandCenter
     @bot.save
   end
 
+  def remove_library(parameters = nil)
+    @bot.active_libraries - parameters
+    refresh_libraries
+    @bot.save
+  end
+
   def refresh_libraries(parameters = nil)
+    @bot.active_commands = []
     @bot.active_libraries.each do |library|
-      @bot.active_commands = @bot.active_commands - LIBRARIES[library] + LIBRARIES[library]
+      @bot.active_commands << LIBRARIES[library]
     end
     @bot.save
   end
