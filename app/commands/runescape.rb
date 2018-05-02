@@ -1,7 +1,7 @@
 module Runescape
   include GroupmeBotHelper
 
-  RUNESCAPE_COMMANDS = [:runescape, :price, :stake, high_score]
+  RUNESCAPE_COMMANDS = [:runescape, :price, :stake, :high_score]
 
   def runescape(parameters = nil)
     return send_message(@bot.bot_id, "Try '/runescape commands' for more options") unless parameters
