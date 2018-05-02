@@ -61,4 +61,10 @@ module CentralCommandCenter
     @bot.active_commands = Bot.new.active_commands
     add_library(@bot.active_libraries, false)
   end
+
+  def request(parameters = nil)
+    return unless parameters
+    @user.requests.create(requested_feature: parameters.join(' '))
+    send_message(@bot.bot_id, "Request added")
+  end
 end
