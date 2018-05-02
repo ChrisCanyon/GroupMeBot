@@ -34,6 +34,7 @@ module Runescape
   end
 
   def high_score(parameters = nil)
+    send_message(@bot.bot_id, "Usage: /high_score player_name") unless parameters
     players = {}
     parameters.each { |player_name| players[player_name] = parse_player(player_name) }
     message = "#{'player name'.ljust(12,'-')}: #{players.keys.join(' | ')}\n"
