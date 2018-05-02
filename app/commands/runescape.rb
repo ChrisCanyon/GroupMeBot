@@ -36,7 +36,7 @@ module Runescape
   def high_score(parameters = nil)
     players = {}
     parameters.each { |player_name| players[player_name] = parse_player(player_name) }
-    message = "#{'player name'.ljust(12,'-'):}#{players.keys.join(' | ')}\n"
+    message = "#{'player name'.ljust(12,'-')}:#{players.keys.join(' | ')}\n"
     STATS.each do |stat|
       message += "#{stat.to_s.ljust(12,'-')}: #{players.map{ |name, stats| stats[stat].to_s.ljust(name.length - 1,'-') }.join(' | ')}\n"
     end
