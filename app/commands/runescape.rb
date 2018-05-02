@@ -53,7 +53,7 @@ module Runescape
 
     STATS = [:total_level, :attack, :defence, :strength, :hitpoints, :ranged, :prayer, :magic,
     :cooking, :woodcutting, :fletching, :fishing, :firemkaing, :crafting, :smithing,
-    :mining, :herblore, :agility, :agility, :theiving, :slayer, :farming, :runecrafting, :hunter]
+    :mining, :herblore, :agility, :theiving, :slayer, :farming, :runecrafting, :hunter]
     def parse_player(player_name)
       raw_player_stats = find_player(player_name)
       return send_message(@bot.bot_id, "Unknown player: #{player_name}") unless raw_player_stats
