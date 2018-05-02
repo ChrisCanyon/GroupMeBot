@@ -71,6 +71,7 @@ module Runescape
       send_message(@bot.bot_id, "response code: #{response.code}")
       send_message(@bot.bot_id, "response body: #{response.body}")
       return nil unless response.code == 200
+      send_message(@bot.bot_id, "didnt return early")
       response.body.split("\n")
     end
 
