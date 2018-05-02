@@ -60,6 +60,7 @@ module CentralCommandCenter
   def refresh_libraries(parameters = nil)
     @bot.active_commands = Bot.new.active_commands
     add_library(@bot.active_libraries, false)
+    send_message(@bot.bot_id, 'Refreshed')
   end
 
   def request_feature(parameters = nil)
