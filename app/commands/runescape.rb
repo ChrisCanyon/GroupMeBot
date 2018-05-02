@@ -38,7 +38,7 @@ module Runescape
     parameters.each { |player_name| players[player_name] = parse_player(player_name) }
     message = "------------#{players.keys.join(' | ')}\n"
     STATS.each do |stat|
-      message += "#{stat.to_s.ljust(12)}: #{players.map{ |name, stats| stats[stat].to_s.ljust(name.length) }.join(' | ')}\n"
+      message += "#{stat.to_s.ljust(12,'-')}: #{players.map{ |name, stats| stats[stat].to_s.ljust(name.length) }.join(' | ')}\n"
     end
     send_message(@bot.bot_id, message)
   end
