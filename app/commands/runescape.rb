@@ -22,8 +22,9 @@ module Runescape
     item_name.delete_at(0)
     items = search_items(item_name.join(' ').downcase)
 
-    return send_message if items.count != 0
-    results = find_item(item['id'])
+    return inconclusive_search(items) if items.count != 1
+
+    results = find_item(items.first['id'])
 
     current_price = results['item']['current']['price']
     day_30_trend = results['item']['day30']['change']
