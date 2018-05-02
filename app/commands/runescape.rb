@@ -1,7 +1,7 @@
 module Runescape
   include GroupmeBotHelper
 
-  RUNESCAPE_COMMANDS = [:runescape, :price, :stake]
+  RUNESCAPE_COMMANDS = [:runescape, :price, :stake, high_score]
 
   def runescape(parameters = nil)
     return send_message(@bot.bot_id, "Try '/runescape commands' for more options") unless parameters
@@ -33,6 +33,11 @@ module Runescape
     send_message(@bot.bot_id, "Current Price: #{current_price}\n30 day trend: #{day_30_trend}\n90 day trend: #{day_90_trend}\n180 day trend: #{day_180_trend}")
   end
 
+  def high_score(parameters = nil)
+    players = parameters.map { |player_name| parse_player(player_name) }
+    pp players
+  end
+
   private
     def inconclusive_search(items)
       send_message(@bot.bot_id, "Unknown item") && return if items.blank?
@@ -43,6 +48,27 @@ module Runescape
     def find_item(item_id)
       uri = URI("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=#{item_id}")
       JSON.parse(Net::HTTP.get(uri))
+    end
+
+
+    STATS = [:total_level, :attack, :defence, :strength, :hitpoints, :ranged, :prayer, :magic,
+    :cooking, :woodcutting, :fletching, :fishing, :firemkaing, :crafting, :smithing,
+    :mining, :herblore, :agility, :agility, :theiving, :slayer, :farming, :runecrafting, :hunter]
+    def parse_player(player_name)
+      raw_player_stats = find_user(player_name)
+      return unless user_stats
+      player_stats = {}
+      STATS.each_with_index do |stat, index|
+        player_stats[stat] = raw_player_stats[index]
+      end
+      player_stats
+    end
+
+    def find_player(player_name)
+      uri = URI("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player_name}")
+      response = Net::HTTP.get_response(uri)
+      return nil unless response.code == 200
+      response.body.split("\n")
     end
 
     def search_items(item_name)
