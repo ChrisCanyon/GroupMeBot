@@ -35,9 +35,9 @@ module Runescape
 
   private
     def inconclusive_search(items)
-      send_message(@bot.bot_id, "Unknown item: #{item_name.join(' ')}") && return if item.blank?
-      send_message(@bot.bot_id, "Search Results:\n#{ item[0..9].map { |x| x['name'] }.join("\n") }\n#{item.count - 10} more options...") && return if item.count > 10
-      send_message(@bot.bot_id, "Search Results:\n#{ item.map { |x| x['name'] }.join("\n") }") && return if item.count > 1
+      send_message(@bot.bot_id, "Unknown item") && return if items.blank?
+      send_message(@bot.bot_id, "Search Results:\n#{ items[0..9].map { |x| x['name'] }.join("\n") }\n#{items.count - 10} more options...") && return if items.count > 10
+      send_message(@bot.bot_id, "Search Results:\n#{ items.map { |x| x['name'] }.join("\n") }") && return if items.count > 1
     end
 
     def find_item(item_id)
