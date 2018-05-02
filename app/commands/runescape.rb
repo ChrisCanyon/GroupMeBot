@@ -68,7 +68,8 @@ module Runescape
       send_message(@bot.bot_id, "searching for #{player_name}")
       uri = URI("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player_name}")
       response = Net::HTTP.get_response(uri)
-      send_message(@bot.bot_id, "response #{response}")
+      send_message(@bot.bot_id, "response code: #{response.code}")
+      send_message(@bot.bot_id, "response body: #{response.body}")
       return nil unless response.code == 200
       response.body.split("\n")
     end
