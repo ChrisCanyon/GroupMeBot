@@ -37,9 +37,9 @@ module Runescape
     send_message(@bot.bot_id, "Usage: /high_score player_name") unless parameters
     players = {}
     parameters.each { |player_name| players[player_name] = parse_player(player_name) }
-    message = "#{'player name'.ljust(12,'-')}: #{players.keys.join(' | ')}\n"
+    message = "player name: #{players.keys.join(' | ')}\n"
     STATS.each do |stat|
-      message += "#{stat.to_s.ljust(12,'-')}: #{players.map{ |name, stats| stats[stat].to_s.center(name.length, '-') }.join(' | ')}\n"
+      message += "#{stat.to_s}: #{players.map{ |name, stats| stats[stat].to_s }.join(' | ')}\n"
     end
     send_message(@bot.bot_id, message)
   end
@@ -61,7 +61,6 @@ module Runescape
     :cooking, :woodcutting, :fletching, :fishing, :firemkaing, :crafting, :smithing,
     :mining, :herblore, :agility, :theiving, :slayer, :farming, :runecrafting, :hunter]
     def parse_player(player_name)
-      p "searching for #{player_name}"
       raw_player_stats = find_player(player_name)
       return send_message(@bot.bot_id, "Unknown player: #{player_name}") unless raw_player_stats
       player_stats = {}
