@@ -42,7 +42,7 @@ module Runescape
     end
 
     def search_items(item_name)
-      items = JSON.parse(File.read('../../osrs_items.json'))
+      items = JSON.parse(File.read('osrs_items.json'))
       items.select { |item| item['name'].downcase.include? item_name }
     end
 end
