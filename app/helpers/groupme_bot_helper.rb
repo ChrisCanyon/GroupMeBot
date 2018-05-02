@@ -10,7 +10,7 @@ module GroupmeBotHelper
 
   def send_message(bot_id, message, attachments = {})
     if message.length > 450
-      line_split = message.split('\n')
+      line_split = message.split("\n")
       if line_split.count == 1
         send_message(bot_id, message[0..449])
         send_message(bot_id, message[450..(message.length)])
