@@ -34,8 +34,13 @@ module Runescape
   end
 
   def high_score(parameters = nil)
-    players = parameters.map { |player_name| parse_player(player_name) }
-    pp players
+    players = {}
+    parameters.each { |player_name| players[player_name] = parse_player(player_name) }
+    message = "------------#{players.keys.join(' | ')}\n"
+    STATS.each do |stat|
+      message += "#{stat.to_s.ljust(12)}: #{players.map{ |name, stats| stats[stat].to_s.ljust(name.length) }.join(' | ')}"
+    end
+    send_message(@bot.bot_id, message)
   end
 
   private
@@ -59,9 +64,7 @@ module Runescape
       return send_message(@bot.bot_id, "Unknown player: #{player_name}") unless raw_player_stats
       player_stats = {}
       STATS.each_with_index do |stat, index|
-        p "index: #{index}"
-        p "setting #{stat} to: #{raw_player_stats[index].split(',')[1]}"
-        player_stats[stat] = raw_player_stats[index]
+        player_stats[stat] = raw_player_stats[index].split(',')[1]
       end
       player_stats
     end
