@@ -59,6 +59,8 @@ module Runescape
       return send_message(@bot.bot_id, "Unknown player: #{player_name}") unless raw_player_stats
       player_stats = {}
       STATS.each_with_index do |stat, index|
+        p "index: #{index}"
+        p "setting #{stat} to: #{raw_player_stats[index]}"
         player_stats[stat] = raw_player_stats[index]
       end
       player_stats
