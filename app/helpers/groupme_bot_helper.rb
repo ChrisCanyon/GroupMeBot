@@ -9,6 +9,21 @@ module GroupmeBotHelper
   end
 
   def send_message(bot_id, message, attachments = {})
+    if message.length > 450
+      line_split = message.split('\n')
+      if line_split.count == 1
+        send_message(bot_id, message[0..449])
+        send_message(bot_id, message[450..(message.length)])
+        return
+      else
+        new_message = line_split.shift
+        while (new_message.length + line_split[0].length) < 450
+          new_message += "\n" + line_split.shift
+        end
+        send_message(bot_id, new_message)
+        send_message(bot_id, line_split.join("\n"))
+      end
+    end
     http.post(SEND_MESSAGE_PATH, { bot_id: bot_id, text: message, attachments: attachments }.to_json, HEADERS)
   end
 
