@@ -9,15 +9,16 @@ module GroupmeBotHelper
   end
 
   def send_message(bot_id, message, attachments = {})
-    if message.length > 450
+    MAX_CHAR = 800
+    if message.length > MAX_CHAR
       line_split = message.split("\n")
       if line_split.count == 1
-        send_message(bot_id, message[0..449])
-        send_message(bot_id, message[450..(message.length)])
+        send_message(bot_id, message[0..MAX_CHAR-1])
+        send_message(bot_id, message[MAX_CHAR..(message.length)])
         return
       else
         new_message = line_split.shift
-        while (new_message.length + line_split[0].length) < 450
+        while (new_message.length + line_split[0].length) < MAX_CHAR
           new_message += "\n" + line_split.shift
         end
         send_message(bot_id, new_message)
