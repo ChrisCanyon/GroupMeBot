@@ -22,6 +22,7 @@ module GroupmeBotHelper
         end
         send_message(bot_id, new_message)
         send_message(bot_id, line_split.join("\n"))
+        return
       end
     end
     http.post(SEND_MESSAGE_PATH, { bot_id: bot_id, text: message, attachments: attachments }.to_json, HEADERS)
