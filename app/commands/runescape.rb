@@ -26,7 +26,7 @@ module Runescape
     send_message(@bot.bot_id, "Search Results:\n#{ item[0..9].map { |x| x['name'] }.join("\n") }\n#{item.count - 10} more options...") && return if item.count > 10
     send_message(@bot.bot_id, "Search Results:\n#{ item.map { |x| x['name'] }.join("\n") }") && return if item.count > 1
 
-    results = find_item(item.first['name'])
+    results = find_item(item.first['id'])
 
     current_price = results['item']['current']['price']
     day_30_trend = results['item']['day30']['change']
