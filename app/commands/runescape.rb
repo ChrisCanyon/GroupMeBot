@@ -23,8 +23,8 @@ module Runescape
     item = search_items(item_name.join(' ').downcase)
 
     send_message(@bot.bot_id, "Unknown item: #{item_name.join(' ')}") && return if item.blank?
-    send_message(@bot.bot_id, "Search Results:\n#{ item[0..9].map { |x| x.item_name }.join("\n") }\n#{item.count - 10} more options...") && return if item.count > 10
-    send_message(@bot.bot_id, "Search Results:\n#{ item.map { |x| x.item_name }.join("\n") }") && return if item.count > 1
+    send_message(@bot.bot_id, "Search Results:\n#{ item[0..9].map { |x| x['name'] }.join("\n") }\n#{item.count - 10} more options...") && return if item.count > 10
+    send_message(@bot.bot_id, "Search Results:\n#{ item.map { |x| x['name'] }.join("\n") }") && return if item.count > 1
 
     results = find_item(item.first['name'])
 
