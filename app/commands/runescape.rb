@@ -22,6 +22,7 @@ module Runescape
     item_name.delete_at(0)
     items = search_items(item_name.join(' ').downcase)
 
+    pp "item list:\b#{items}"
     return inconclusive_search(items) if items.count != 1
 
     results = find_item(items.first['id'])
@@ -47,8 +48,11 @@ module Runescape
 
     def search_items(item_name)
       items = JSON.parse(File.read('osrs_items.json'))
+      p "searching for #{item_name}"
       searched = items.select { |item| item['name'].downcase.include? item_name }
+      pp "found possible items:\n#{searched}"
       return searched.select { |item| item['name'].downcase == item_name}
+      p 'returning item list'
       searched
     end
 end
