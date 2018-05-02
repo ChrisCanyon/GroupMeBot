@@ -55,8 +55,8 @@ module Runescape
     :cooking, :woodcutting, :fletching, :fishing, :firemkaing, :crafting, :smithing,
     :mining, :herblore, :agility, :agility, :theiving, :slayer, :farming, :runecrafting, :hunter]
     def parse_player(player_name)
-      raw_player_stats = find_user(player_name)
-      return unless user_stats
+      raw_player_stats = find_player(player_name)
+      return unless raw_player_stats
       player_stats = {}
       STATS.each_with_index do |stat, index|
         player_stats[stat] = raw_player_stats[index]

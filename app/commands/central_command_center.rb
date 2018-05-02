@@ -53,14 +53,14 @@ module CentralCommandCenter
       @bot.active_libraries.delete(library)
     end
     @bot.save
-    refresh_libraries
+    refresh_libraries(nil, false)
     send_message(@bot.bot_id, 'Libraries removed')
   end
 
-  def refresh_libraries(parameters = nil)
+  def refresh_libraries(parameters = nil, print = true)
     @bot.active_commands = Bot.new.active_commands
     add_library(@bot.active_libraries, false)
-    send_message(@bot.bot_id, 'Refreshed')
+    send_message(@bot.bot_id, 'Refreshed') if print
   end
 
   def request_feature(parameters = nil)
