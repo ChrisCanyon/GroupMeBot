@@ -8,8 +8,8 @@ module GroupmeBotHelper
     JSON.parse(Net::HTTP.get(URI("https://api.groupme.com/v3/groups/#{group}/messages/#{message}?token=RNMl8G2s2QmFUAOGRphNKUo7JQkPrg452iIhyltF")))
   end
 
+  MAX_CHAR = 800
   def send_message(bot_id, message, attachments = {})
-    MAX_CHAR = 800
     if message.length > MAX_CHAR
       line_split = message.split("\n")
       if line_split.count == 1
