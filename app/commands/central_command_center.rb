@@ -11,6 +11,7 @@ module CentralCommandCenter
   LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS }
 
   def run_command(input)
+    p "IM HERE"
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
     command = input[0]
     parameters = input[1..(input.count-1)] unless input.count < 2
