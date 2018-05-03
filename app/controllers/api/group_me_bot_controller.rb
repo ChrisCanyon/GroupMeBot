@@ -3,8 +3,10 @@ module Api
     include CentralCommandCenter
 
     def index
-      setup
-      process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
+      Thread.new {
+        setup
+        process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
+      }
     end
 
     private
@@ -37,9 +39,15 @@ module Api
         member
       end
 
+      PARSING_LIBRARIES = []
       def process_message
-        if params[:text].slice!(0) == '/'
-          parsed_params = params[:text].downcase.split(' ')
+        text = params[:text].downcase
+        (@bot.active_libraries & PARSING_LIBRARIES).each do |library|
+          parse_text(library , text, @group_member, @user, @group, @bot)
+        end
+
+        if text.slice!(0) == '/'
+          parsed_params = text.split(' ')
           if @bot.active_commands.include?(parsed_params[0])
             run_command(parsed_params, @group_member, @user, @group, @bot)
           else

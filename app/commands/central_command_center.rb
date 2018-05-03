@@ -10,15 +10,15 @@ module CentralCommandCenter
 
   LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS }
 
-  def run_command(input, group_member, user, group, bot)
-    @group = group
-    @bot = bot
-    @user = user
-    @group_member = group_member
+  def run_command(input)
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
     command = input[0]
     parameters = input[1..(input.count-1)] unless input.count < 2
     self.send(input[0], parameters)
+  end
+
+  def parse_text(library, text)
+    self.send(library + '_parse', text)
   end
 
   def libraries(parameters = nil)
