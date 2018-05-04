@@ -3,10 +3,8 @@ module Api
     include CentralCommandCenter
 
     def index
-      Thread.new {
-        setup
-        process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
-      }
+      setup
+      process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
     end
 
     private

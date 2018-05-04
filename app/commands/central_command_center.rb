@@ -1,6 +1,7 @@
 module CentralCommandCenter
   include GroupmeBotHelper
   include Runescape
+  include ExpressionTracker
 
   # Rules:
   # 1) All functions must be downcase
@@ -8,10 +9,9 @@ module CentralCommandCenter
   # 3) All libraries must be put into LIBRARIES array
   # 4) All library must have a COMMANDS array
 
-  LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS }
+  LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS, 'expression_tracker' => EXPRESSION_TRACKER_COMMANDS }
 
   def run_command(input)
-    p "IM HERE"
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
     command = input[0]
     parameters = input[1..(input.count-1)] unless input.count < 2
@@ -60,7 +60,9 @@ module CentralCommandCenter
 
   def refresh_libraries(parameters = nil, print = true)
     @bot.active_commands = Bot.new.active_commands
-    add_library(@bot.active_libraries, false)
+    libraries_save = @bot.active_libraries.clone
+    @bot.active_libraries = []
+    add_library(libraries_save, false)
     send_message(@bot.bot_id, 'Refreshed') if print
   end
 
