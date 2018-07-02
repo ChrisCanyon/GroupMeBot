@@ -1,7 +1,7 @@
 module CentralCommandCenter
   include GroupmeBotHelper
   include Runescape
-  include ExpressionTracker
+  # include ExpressionTracker
 
   # Rules:
   # 1) All functions must be downcase
