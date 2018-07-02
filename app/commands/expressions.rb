@@ -12,12 +12,8 @@ module ExpressionTracker
     end
   end
 
-  def expressions_tracker_parse(parameters)
-
-  end
-
   def track_expression(parameters = nil)
-    
+
   end
 
   def untrack_expression(parameters = nil)
@@ -31,7 +27,11 @@ module ExpressionTracker
   private
   def regex_creator
     @regex_creator ||= RegexCreationHelper::RegexCreator.new
+  end
 
+  def expressions_tracker_parse(parameters)
+
+  end
 
 end
 # expression: "something" graph: true/false respond: true/false

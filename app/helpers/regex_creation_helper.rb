@@ -15,7 +15,7 @@ module RegexCreationHelper
     WHITESPACE = '(\s|\W)*'
 
     def create_regex_from_string(source, recognition_strength = 'standard')
-      @source = source
+      @source = source.downcase
       return already_regex if @source[0] == '/' && @source.last == '/'
 
       case recognition_strength
