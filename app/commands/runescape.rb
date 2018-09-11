@@ -75,6 +75,7 @@ module Runescape
     def find_player(player_name)
       uri = URI("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player_name}")
       response = Net::HTTP.get_response(uri)
+      p "response", response
       return nil unless response.code == '200'
       response.body.split("\n")
     end
