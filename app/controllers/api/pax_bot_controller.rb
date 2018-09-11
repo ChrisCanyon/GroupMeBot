@@ -15,9 +15,8 @@ module Api
     end
 
     def check_command(escape_key)
-      keys = ['/', '!']
       send_message(BOT_ID, 'Meow') if params[:text].downcase[/(\bpax\b|\bpaxton\b)/]
-      send_message(BOT_ID, 'Purr') if params[:text].downcase[/(\bhali\b)/]      
+      send_message(BOT_ID, 'Purr') if params[:text].downcase[/(\bhali\b)/]
     end
   end
 end
