@@ -8,7 +8,6 @@ module Runescape
     case parameters[0]
     when 'commands'
       message = "Commands: \n/" +  RUNESCAPE_COMMANDS[1..(RUNESCAPE_COMMANDS.count-1)].join("\n/")
-      print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
       send_message(@bot.bot_id, message)
     end
   end
