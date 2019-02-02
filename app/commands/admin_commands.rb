@@ -55,7 +55,7 @@ module AdminCommands
   end
 
   def test_function
-    sample = @group_member.group_members.sample
+    sample = @group.group_members.sample
     attachments = [{ "loci": [[0, sample.name.length + 1]], "type": "mentions", "user_ids": ["#{sample.user.external_id}"] }]
     send_message(@bot_id, "@#{sample.name}", attachments)
   end
