@@ -29,7 +29,9 @@ module AdminCommands
 
   private
   def commands
+    p "In commands funtion"
     message = "Commands: \n/" +  ADMIN_COMMANDS[1..(ADMIN_COMMANDS.count-1)].join("\n/")
+    p message
     send_message(@bot_id, message)
   end
 
