@@ -7,7 +7,7 @@ module AdminCommands
   def run_admin_command(command, bot_id, user)
     @user = user
     @bot_id = bot_id
-
+    print "\n\nHELLO\n\n\n"
     send_message(@bot_id, "Permission Denied") && return unless @user.access_level == 'admin'
     return send_message(@bot_id, "Try '!commands' for more options") unless parameters
 
