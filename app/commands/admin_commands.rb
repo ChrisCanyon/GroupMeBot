@@ -1,7 +1,7 @@
 module AdminCommands
   include GroupmeBotHelper
 
-  ADMIN_COMMANDS = [:test, :revoke, :grant, :commands]
+  ADMIN_COMMANDS = ["test", "revoke", "grant", "commands"]
   ADMIN_ID = '13682993'
 
   def run_admin_command(command, bot_id, user)
