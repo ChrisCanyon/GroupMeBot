@@ -12,6 +12,8 @@ module AdminCommands
     return send_message(@bot_id, "Try '!commands' for more options") unless command
 
     print "\n\n\n" + command[0] +  "\n\n\n"
+    print (ADMIN_COMMANDS[3])
+    print (commands[0])
     print (ADMIN_COMMANDS[3] == commands[0])
 
     case command[0]
