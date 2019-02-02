@@ -12,7 +12,7 @@ module AdminCommands
 
     if ADMIN_COMMANDS.include?(command[0])
       parameters = command[1..(command.count-1)] unless command.count < 2
-      self.send(input[0], parameters)
+      self.send(command[0], parameters)
     else
       send_message(@bot_id, "Invalid Command")
     end
