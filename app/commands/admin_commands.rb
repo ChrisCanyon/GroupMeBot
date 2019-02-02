@@ -6,6 +6,7 @@ module AdminCommands
 
   def run_admin_command(command)
     p "Please print\n\n\n\n"
+    print "\n\n\n" + command +  "\n\n\n"
 
     @bot_id = @bot.bot_id
     send_message(@bot_id, "Access Denied") && return unless @group_member.access_level == 'admin'
