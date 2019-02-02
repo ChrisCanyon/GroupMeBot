@@ -7,7 +7,6 @@ module AdminCommands
   def run_admin_command(command, bot_id, user)
     @user = user
     @bot_id = bot_id
-    print "\n\nHELLO\n\n\n"
     send_message(@bot_id, "Permission Denied") && return unless @user.access_level == 'admin'
     return send_message(@bot_id, "Try '!commands' for more options") unless parameters
 
@@ -44,7 +43,7 @@ module AdminCommands
   def revoke
     send_message(@bot_id, "Usage: Tag someone to revoke") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
-    p groupme_ids
+    p "\n\n\n" + groupme_ids + "\n\n\n"
     groupme_ids.each do |id|
       user_to_revoke = User.where(groupme_id: id).first
       user_to_revoke.update(access_level: "none") unless user_to_revoke.groupme_id == ADMIN_ID
