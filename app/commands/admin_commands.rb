@@ -6,7 +6,7 @@ module AdminCommands
 
   def run_admin_command(command)
     @bot_id = @bot.bot_id
-    send_message(@bot_id, "Permission Denied") && return unless @group_member.access_level == 'admin'
+    send_message(@bot_id, "Access Denied") && return unless @group_member.access_level == 'admin'
     return send_message(@bot_id, "Try '!commands' for more options") unless command
 
     case command[0]
@@ -33,8 +33,8 @@ module AdminCommands
     send_message(@bot_id, "Usage: Tag someone to grant") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
     groupme_ids.each do |id|
-      user_to_grant = User.where(groupme_id: id).first
-      user_to_grant.update(access_level: "standard") unless user_to_grant.groupme_id == ADMIN_ID
+      user_to_grant = User.where(external_id: id).first
+      user_to_grant.update(access_level: "admin") unless user_to_grant.groupme_id == ADMIN_ID
     end
     send_message(@bot_id, "Permission(s) granted")
   end
@@ -44,7 +44,7 @@ module AdminCommands
     groupme_ids = params[:attachments][0][:user_ids]
     p "\n\n\n" + groupme_ids + "\n\n\n"
     groupme_ids.each do |id|
-      user_to_revoke = User.where(groupme_id: id).first
+      user_to_revoke = User.where(external_id: id).first
       user_to_revoke.update(access_level: "none") unless user_to_revoke.groupme_id == ADMIN_ID
     end
     send_message(@bot_id, "Permission(s) revoked")

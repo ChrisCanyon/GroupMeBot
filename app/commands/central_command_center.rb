@@ -15,12 +15,12 @@ module CentralCommandCenter
   def run_command(input, command_type)
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
     case command_type
+    when '!'
+      run_admin_command(input)
     when '/'
       command = input[0]
       parameters = input[1..(input.count-1)] unless input.count < 2
       self.send(input[0], parameters)
-    when '!'
-      run_admin_command(input)
     end
   end
 
