@@ -13,6 +13,7 @@ module CentralCommandCenter
   LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS }
 
   def run_command(input, command_type)
+    print "\n\nHELLO from CentralCommandCenter \n\n\n"
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
     case command_type
     when '/'

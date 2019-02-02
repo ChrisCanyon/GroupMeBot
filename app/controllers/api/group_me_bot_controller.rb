@@ -46,7 +46,7 @@ module Api
         end
 
         command_type = text.slice!(0)
-        if (['/', '!'].include?(text.slice!(0)))
+        if (['/', '!'].include?(command_type))
           parsed_params = text.split(' ')
           if @bot.active_commands.include?(parsed_params[0])
             run_command(parsed_params, command_type)
