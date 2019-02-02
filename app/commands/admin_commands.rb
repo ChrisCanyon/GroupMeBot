@@ -14,9 +14,9 @@ module AdminCommands
     print "\n\n\n" + command[0] +  "\n\n\n"
     print (ADMIN_COMMANDS[3])
     STDOUT.flush
-    print (commands[0])
+    print (command[0])
     STDOUT.flush
-    print (ADMIN_COMMANDS[3] == commands[0])
+    print (ADMIN_COMMANDS[3] == command[0])
     STDOUT.flush
 
     case command[0]
