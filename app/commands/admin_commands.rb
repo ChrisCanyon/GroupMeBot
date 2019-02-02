@@ -65,6 +65,7 @@ module AdminCommands
     f.write(script)
     f.close
     message = `ruby temp.rb`
+    p "Script output: " + message
     send_message(@bot_id, message)
   end
 

@@ -33,7 +33,6 @@ module CentralCommandCenter
   end
 
   def commands(parameters = nil)
-    p "In CentralCommandCenter.commands"
     send_message(@bot.bot_id, "Commands:\n#{@bot.active_commands.join("\n")}")
   end
 
