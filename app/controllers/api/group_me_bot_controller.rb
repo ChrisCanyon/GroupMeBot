@@ -46,13 +46,16 @@ module Api
         end
 
         command_type = text.slice!(0)
-        if (['/', '!'].include?(command_type))
-          parsed_params = text.split(' ')
+        parsed_params = text.split(' ')
+
+        if ('/' == command_type)
           if @bot.active_commands.include?(parsed_params[0])
             run_command(parsed_params, command_type)
           else
-            send_message(@bot.bot_id, "Unknown Command: #{parsed_params[0]}. Try /commands for a list of commands")
+            send_message(@bot.bot_id, "Unknown Command: #{parsed_params[0]}. Try #{command_type}commands for a list of commands")
           end
+        elsif ('!' == command_type)
+          run_command(parsed_params, command_type)
         end
       end
   end
