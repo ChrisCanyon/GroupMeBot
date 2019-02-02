@@ -61,11 +61,11 @@ module AdminCommands
     #join parameters
     script = parameters.join(' ')
     #write file filename
-     f = File.new("temp.rb", "w+")
-     f.write(script)
-     f.close
-     message = `ruby temp.rb`
-     send_message(@bot_id, message)
+    f = File.new("temp.rb", "w+")
+    f.write(script)
+    f.close
+    message = `ruby temp.rb`
+    send_message(@bot_id, message)
   end
 
   def test_function
