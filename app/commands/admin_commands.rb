@@ -36,7 +36,8 @@ module AdminCommands
     groupme_ids = params[:attachments][0][:user_ids]
     groupme_ids.each do |id|
       user_to_grant = User.where(external_id: id).first
-      user_to_grant.update(access_level: "admin") unless user_to_grant.external_id == ADMIN_ID
+      group_member_to_grant = user_to_grant.group_members.where(:group_id == @group.id)
+      group_member_to_grant.update(access_level: "admin") unless user_to_grant.external_id == ADMIN_ID
     end
     send_message(@bot_id, "Permission(s) granted")
   end
@@ -47,7 +48,8 @@ module AdminCommands
     p "\n\n\n" + groupme_ids + "\n\n\n"
     groupme_ids.each do |id|
       user_to_revoke = User.where(external_id: id).first
-      user_to_revoke.update(access_level: "none") unless user_to_revoke.external_id == ADMIN_ID
+      group_member_to_revoke = user_to_revoke.group_members.where(:group_id == @group.id)
+      group_member_to_revoke.update(access_level: "none") unless user_to_revoke.external_id == ADMIN_ID
     end
     send_message(@bot_id, "Permission(s) revoked")
   end
