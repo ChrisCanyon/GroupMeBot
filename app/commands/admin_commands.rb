@@ -8,7 +8,7 @@ module AdminCommands
     @user = user
     @bot_id = bot_id
     send_message(@bot_id, "Permission Denied") && return unless @user.access_level == 'admin'
-    return send_message(@bot_id, "Try '!commands' for more options") unless parameters
+    return send_message(@bot_id, "Try '!commands' for more options") unless command
 
     case command[0]
     when ADMIN_COMMANDS[0]
