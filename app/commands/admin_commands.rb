@@ -9,6 +9,8 @@ module AdminCommands
     send_message(@bot_id, "Access Denied") && return unless @group_member.access_level == 'admin'
     return send_message(@bot_id, "Try '!commands' for more options") unless command
 
+    print "\n\n\n" + command[0] +  "\n\n\n"
+
     case command[0]
     when ADMIN_COMMANDS[0]
       test_function()
