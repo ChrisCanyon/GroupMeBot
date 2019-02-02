@@ -1,7 +1,5 @@
 module Api
   class GroupMeBotController < Api::BaseController
-    include CentralCommandCenter
-
     def index
       setup
       process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
