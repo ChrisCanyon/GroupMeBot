@@ -45,7 +45,8 @@ module AdminCommands
   def revoke
     send_message(@bot_id, "Usage: Tag someone to revoke") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
-    p "\n\n\n" + groupme_ids + "\n\n\n"
+    p groupme_ids
+    p "\n\n\n"
     groupme_ids.each do |id|
       user_to_revoke = User.where(external_id: id).first
       group_member_to_revoke = user_to_revoke.group_members.where(:group_id == @group.id)
