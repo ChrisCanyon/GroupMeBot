@@ -12,6 +12,7 @@ module AdminCommands
     return send_message(@bot_id, "Try '!commands' for more options") unless command
 
     print "\n\n\n" + command[0] +  "\n\n\n"
+    print (ADMIN_COMMANDS[3] == commands[0])
 
     case command[0]
     when ADMIN_COMMANDS[0]
@@ -21,6 +22,7 @@ module AdminCommands
     when ADMIN_COMMANDS[2]
       grant()
     when ADMIN_COMMANDS[3]
+      p "about to do stuff"
       admin_commands()
     else
       send_message(@bot_id, "Invalid Command")
