@@ -20,6 +20,7 @@ module CentralCommandCenter
     when '/'
       command = input[0]
       parameters = input[1..(input.count-1)] unless input.count < 2
+      p "about to send"
       self.send(input[0], parameters)
     end
   end
@@ -33,6 +34,7 @@ module CentralCommandCenter
   end
 
   def commands(parameters = nil)
+    p "In CentralCommandCenter.commands"
     send_message(@bot.bot_id, "Commands:\n#{@bot.active_commands.join("\n")}")
   end
 
