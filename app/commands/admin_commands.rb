@@ -1,7 +1,7 @@
 module AdminCommands
   include GroupmeBotHelper
 
-  ADMIN_COMMANDS = ["test", "revoke", "grant", "commands"]
+  ADMIN_COMMANDS = ["test", "revoke", "grant", "commands", "ruby"]
   ADMIN_ID = '13682993'
 
   def run_admin_command(command)
@@ -18,6 +18,8 @@ module AdminCommands
       grant()
     when ADMIN_COMMANDS[3]
       admin_commands()
+    when ADMIN_COMMANDS[4]
+      ruby(command[1..(command.count-1)])
     else
       send_message(@bot_id, "Invalid Command")
     end
@@ -53,6 +55,17 @@ module AdminCommands
 
   def valid_permission_change_params?
     params[:attachments].present? && params[:attachments][0][:type] == "mentions"
+  end
+
+  def ruby(parameters)
+    #join parameters
+    script = parameters.join(' ')
+    #write file filename
+     f = File.new("temp.rb", "w+")
+     f.write(script)
+     f.close
+     message = `ruby temp.rb`
+     send_message(@bot_id, message)
   end
 
   def test_function
