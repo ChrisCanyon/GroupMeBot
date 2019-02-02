@@ -21,6 +21,7 @@ module CentralCommandCenter
       self.send(input[0], parameters)
     when '!'
       run_admin_command(input, @bot.bot_id, @user)
+    end
   end
 
   def parse_text(library, text)
