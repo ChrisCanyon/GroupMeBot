@@ -1,7 +1,7 @@
 module AdminCommands
   include GroupmeBotHelper
 
-  ADMIN_COMMANDS = ["!test", "!revoke", "!grant"]
+  ADMIN_COMMANDS = [:test, :revoke, :grant, :commands]
   ADMIN_ID = '13682993'
 
   def run_admin_command(command, bot_id, user)
@@ -9,20 +9,28 @@ module AdminCommands
     @bot_id = bot_id
 
     send_message(@bot_id, "Permission Denied") && return unless @user.access_level == 'admin'
+    return send_message(@bot_id, "Try '!commands' for more options") unless parameters
 
-    case command
+    case command[0]
     when ADMIN_COMMANDS[0]
-      test_function
+      test_function()
     when ADMIN_COMMANDS[1]
-      revoke
+      revoke()
     when ADMIN_COMMANDS[2]
-      grant
+      grant()
+    when ADMIN_COMMANDS[3]
+      commands()
     else
       send_message(@bot_id, "Invalid Command")
     end
   end
 
   private
+  def commands
+    message = "Commands: \n/" +  ADMIN_COMMANDS[1..(ADMIN_COMMANDS.count-1)].join("\n/")
+    send_message(@bot_id, message)
+  end
+
   def grant
     send_message(@bot_id, "Usage: Tag someone to grant") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]

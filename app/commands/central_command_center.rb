@@ -1,6 +1,7 @@
 module CentralCommandCenter
   include GroupmeBotHelper
   include Runescape
+  include AdminCommands
   # include ExpressionTracker
 
   # Rules:
@@ -11,11 +12,15 @@ module CentralCommandCenter
 
   LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS }
 
-  def run_command(input)
+  def run_command(input, command_type)
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"
-    command = input[0]
-    parameters = input[1..(input.count-1)] unless input.count < 2
-    self.send(input[0], parameters)
+    case command_type
+    when '/'
+      command = input[0]
+      parameters = input[1..(input.count-1)] unless input.count < 2
+      self.send(input[0], parameters)
+    when '!'
+      run_admin_command(input, @bot.bot_id, @user)
   end
 
   def parse_text(library, text)

@@ -37,6 +37,7 @@ module Api
         member
       end
 
+
       PARSING_LIBRARIES = []
       def process_message
         text = params[:text].downcase
@@ -44,10 +45,11 @@ module Api
           parse_text(library, text)
         end
 
-        if text.slice!(0) == '/'
+        command_type = text.slice!(0)
+        if (['/', '!'].include?(text.slice!(0)))
           parsed_params = text.split(' ')
           if @bot.active_commands.include?(parsed_params[0])
-            run_command(parsed_params)
+            run_command(parsed_params, command_type)
           else
             send_message(@bot.bot_id, "Unknown Command: #{parsed_params[0]}. Try /commands for a list of commands")
           end
