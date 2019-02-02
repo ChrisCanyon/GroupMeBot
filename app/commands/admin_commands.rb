@@ -21,14 +21,14 @@ module AdminCommands
     when ADMIN_COMMANDS[2]
       grant()
     when ADMIN_COMMANDS[3]
-      commands()
+      admin_commands()
     else
       send_message(@bot_id, "Invalid Command")
     end
   end
 
   private
-  def commands
+  def admin_commands
     p "In commands funtion"
     message = "Commands: \n/" +  ADMIN_COMMANDS[1..(ADMIN_COMMANDS.count-1)].join("\n/")
     p message
