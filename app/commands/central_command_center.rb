@@ -21,6 +21,7 @@ module CentralCommandCenter
       command = input[0]
       parameters = input[1..(input.count-1)] unless input.count < 2
       p "about to send"
+      STDOUT.flush
       self.send(input[0], parameters)
     end
   end

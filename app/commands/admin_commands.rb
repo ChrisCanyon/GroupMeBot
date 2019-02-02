@@ -13,8 +13,11 @@ module AdminCommands
 
     print "\n\n\n" + command[0] +  "\n\n\n"
     print (ADMIN_COMMANDS[3])
+    STDOUT.flush
     print (commands[0])
+    STDOUT.flush
     print (ADMIN_COMMANDS[3] == commands[0])
+    STDOUT.flush
 
     case command[0]
     when ADMIN_COMMANDS[0]
@@ -25,6 +28,7 @@ module AdminCommands
       grant()
     when ADMIN_COMMANDS[3]
       p "about to do stuff"
+      STDOUT.flush
       admin_commands()
     else
       send_message(@bot_id, "Invalid Command")
@@ -34,8 +38,10 @@ module AdminCommands
   private
   def admin_commands
     p "In commands funtion"
+    STDOUT.flush
     message = "Commands: \n/" +  ADMIN_COMMANDS[1..(ADMIN_COMMANDS.count-1)].join("\n/")
     p message
+    STDOUT.flush
     send_message(@bot_id, message)
   end
 
