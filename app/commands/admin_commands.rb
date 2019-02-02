@@ -5,19 +5,9 @@ module AdminCommands
   ADMIN_ID = '13682993'
 
   def run_admin_command(command)
-    p "Please print\n\n\n\n"
-
     @bot_id = @bot.bot_id
     send_message(@bot_id, "Access Denied") && return unless @group_member.access_level == 'admin'
     return send_message(@bot_id, "Try '!commands' for more options") unless command.length > 0
-
-    print "\n\n\n" + command[0] +  "\n\n\n"
-    print (ADMIN_COMMANDS[3])
-    STDOUT.flush
-    print (command[0])
-    STDOUT.flush
-    print (ADMIN_COMMANDS[3] == command[0])
-    STDOUT.flush
 
     case command[0]
     when ADMIN_COMMANDS[0]
@@ -27,8 +17,6 @@ module AdminCommands
     when ADMIN_COMMANDS[2]
       grant()
     when ADMIN_COMMANDS[3]
-      p "about to do stuff"
-      STDOUT.flush
       admin_commands()
     else
       send_message(@bot_id, "Invalid Command")
@@ -37,11 +25,7 @@ module AdminCommands
 
   private
   def admin_commands
-    p "In commands funtion"
-    STDOUT.flush
     message = "Commands: \n/" +  ADMIN_COMMANDS[1..(ADMIN_COMMANDS.count-1)].join("\n/")
-    p message
-    STDOUT.flush
     send_message(@bot_id, message)
   end
 
@@ -59,8 +43,6 @@ module AdminCommands
   def revoke
     send_message(@bot_id, "Usage: Tag someone to revoke") && return unless valid_permission_change_params?
     groupme_ids = params[:attachments][0][:user_ids]
-    p groupme_ids
-    p "\n\n\n"
     groupme_ids.each do |id|
       user_to_revoke = User.where(external_id: id).first
       group_member_to_revoke = user_to_revoke.group_members.where(:group_id == @group.id)
