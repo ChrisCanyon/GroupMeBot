@@ -53,7 +53,10 @@ module Api
             send_message(@bot.bot_id, "Unknown Command: #{parsed_params[0]}. Try #{command_type}commands for a list of commands")
           end
         elsif ('!' == command_type)
-          run_command(parsed_params, command_type)
+          t = params[:text]
+          ct = t.slice!(0)
+          pp = t.split(' ')
+          run_command(pp, ct)
         end
       end
   end

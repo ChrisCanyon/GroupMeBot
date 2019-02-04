@@ -1,7 +1,7 @@
 module LibraryName
   include GroupmeBotHelper
 
-  LIBRARYNAME_COMMANDS = [:library_name, :command1, :command2, :commandX]
+  LIBRARY_NAME_COMMANDS = [:library_name, :command1, :command2, :commandX]
 
   def library_name(parameters = nil)
     case parameters[0]
