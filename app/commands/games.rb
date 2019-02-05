@@ -1,7 +1,7 @@
 module Games
   include GroupmeBotHelper
 
-  GAMES_COMMANDS = [:library_name, :command1, :command2, :commandX]
+  GAMES_COMMANDS = [:games, :start_tic_tac_toe, :play_tic_tac_toe]
 
   def games(parameters = nil)
     case parameters[0]
@@ -11,15 +11,35 @@ module Games
     end
   end
 
-  def command1(parameters = nil)
+  def start_tic_tac_toe(parameters = nil)
+    board = "*|*|*\n*|*|*\n*|*|*\n"
+    message = "+play_tic_tac_toe X\n" + board
+    send_message(@bot.bot_id, message)
+  end
+
+  def play_tic_tac_toe(parameters = nil)
+    if (parameters.count == 0 || ['X', 'O'].include?(parameters[0]))
+      return send_message(@bot.bot_id, "Invalid request. Required 'X' or 'O' not found")
+    end
+    message = "+play_tic_tac_toe "
+    if (parameters[0] == 'X')
+      message += "O\n"
+    else
+      message += "X\n"
+    end
+
+    board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
 
   end
 
-  def command2(parameters = nil)
+  private
+
+  def parse_tic_tac_toe_board(board)
+      p board
+  end
+
+  def build_board_from_array(array)
 
   end
 
-  def commandX(parameters = nil)
-
-  end
 end
