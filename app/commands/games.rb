@@ -37,7 +37,7 @@ module Games
   def parse_tic_tac_toe_board(board)
     parsed = []
     board.each do |x|
-      parse.push(x.split('|'))
+      parsed.push(x.split('|'))
     end
     return parsed
   end
