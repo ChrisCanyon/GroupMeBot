@@ -30,7 +30,7 @@ module Games
 
     board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
     message = "Your board was:\n" + build_board_from_array(board)
-
+    send_message(@bot.bot_id, message)
   end
 
   private
