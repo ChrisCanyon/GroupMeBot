@@ -18,6 +18,7 @@ module Games
   end
 
   def play_tic_tac_toe(parameters = nil)
+    sleep(1)
     if (parameters.count == 0 || ['X', 'O'].include?(parameters[0]))
       return send_message(@bot.bot_id, "Invalid request. Required 'X' or 'O' not found")
     end

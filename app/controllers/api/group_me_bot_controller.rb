@@ -2,7 +2,7 @@ module Api
   class GroupMeBotController < Api::BaseController
     def index
       setup
-      process_message unless params['sender_type'] == 'bot' || (params['sender_type'] == 'system')
+      process_message unless || (params['sender_type'] == 'system')
     end
 
     private
