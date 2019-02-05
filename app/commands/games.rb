@@ -57,6 +57,7 @@ module Games
     if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][0] != '*')
       return true
     end
+    return false
   end
 
   def parse_tic_tac_toe_board(board)
