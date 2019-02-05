@@ -32,20 +32,26 @@ module Games
       message += "X\n"
     end
 
-    board = make_move(board)
+    board = make_move(board, parameters[0])
 
     message += build_board_from_array(board)
     send_message(@bot.bot_id, message)
   end
 
   private
-  def make_move(board)
+  def make_move(board, xo)
     # this is where logic goes to make a move
+    3.times do |x|
+      3.times do |y|
+        if board[x][y] == '*'
+          board[x][y] = xo
+          return board;
+        end
+    end
     return board
   end
 
   def check_victory(board)
-    p "checking victory\n"
     # check rows
     board.each do |x|
       if (x[0] == x[1] && x[1] == x[2] && x[0] != '*')
