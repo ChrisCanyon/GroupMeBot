@@ -26,25 +26,26 @@ module Games
     return send_message(@bot.bot_id, "You win") if check_victory(board)
 
     message = "+play_tic_tac_toe "
-    if (parameters[0] == 'X')
+    move_type = parameters[0].upcase
+    if (move_type == 'X')
       message += "O\n"
     else
       message += "X\n"
     end
 
-    board = make_move(board, parameters[0])
+    board = make_move(board, move_type)
 
     message += build_board_from_array(board)
     send_message(@bot.bot_id, message)
   end
 
   private
-  def make_move(board, xo)
+  def make_move(board, move_type)
     # this is where logic goes to make a move
     3.times do |x|
       3.times do |y|
         if board[x][y] == '*'
-          board[x][y] = xo
+          board[x][y] = move_type
           return board;
         end
       end
