@@ -13,7 +13,7 @@ module Games
 
   def start_tic_tac_toe(parameters = nil)
     board = "*|*|*\n*|*|*\n*|*|*\n"
-    message = "+play_tic_tac_toe X\n" + board
+    message = "/play_tic_tac_toe X\n" + board
     send_message(@bot.bot_id, message)
   end
 
@@ -26,7 +26,7 @@ module Games
     board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
     return send_message(@bot.bot_id, "You win") if check_victory(board)
 
-    message = "+play_tic_tac_toe "
+    message = "/play_tic_tac_toe "
     move_type = parameters[0].upcase
     if (move_type == 'X')
       message += "O\n"
