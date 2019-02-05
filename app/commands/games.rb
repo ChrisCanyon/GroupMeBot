@@ -29,16 +29,25 @@ module Games
     end
 
     board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
+    message = "Your board was:\n" + build_board_from_array(board)
 
   end
 
   private
   def parse_tic_tac_toe_board(board)
-      p board
+    parsed = []
+    board.each do |x|
+      parse.push(x.split('|'))
+    end
+    return parsed
   end
 
   def build_board_from_array(array)
-
+    output = ""
+    array.each do |x|
+      output += x.join('|') + "\n"
+    end
+    return output
   end
 
 end
