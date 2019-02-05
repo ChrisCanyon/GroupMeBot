@@ -21,6 +21,10 @@ module Games
     if (parameters.count == 0 || ['X', 'O'].include?(parameters[0]))
       return send_message(@bot.bot_id, "Invalid request. Required 'X' or 'O' not found")
     end
+
+    board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
+    return send_message(@bot.bot_id, "You win") if check_victory(board)
+
     message = "+play_tic_tac_toe "
     if (parameters[0] == 'X')
       message += "O\n"
@@ -28,12 +32,33 @@ module Games
       message += "X\n"
     end
 
-    board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
-    message = "Your board was:\n" + build_board_from_array(board)
-    send_message(@bot.bot_id, message)
+
+
   end
 
   private
+  def check_victory(board)
+    # check rows
+    board.each do |x|
+      if (x[0] == x[1] && x[1] == x[2] && x[0] != '*')
+        return true
+      end
+    end
+    # check columns
+    3.times do |i|
+      if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != '*')
+        return true
+      end
+    end
+    # check diagonals
+    if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != '*')
+      return true
+    end
+    if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][0] != '*')
+      return true
+    end
+  end
+
   def parse_tic_tac_toe_board(board)
     parsed = []
     board.each do |x|
