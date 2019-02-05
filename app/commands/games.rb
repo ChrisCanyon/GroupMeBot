@@ -47,6 +47,7 @@ module Games
           board[x][y] = xo
           return board;
         end
+      end
     end
     return board
   end
