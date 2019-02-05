@@ -11,7 +11,7 @@ module CentralCommandCenter
   # 3) All libraries must be put into LIBRARIES array
   # 4) All library must have a COMMANDS array
 
-  LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS 'games' => GAMES_COMMANDS}
+  LIBRARIES = { 'runescape'=> RUNESCAPE_COMMANDS, 'games' => GAMES_COMMANDS}
 
   def run_command(input, command_type)
     send_message(@bot_id, "Permission Denied") && return if @group_member.access_level == "none"

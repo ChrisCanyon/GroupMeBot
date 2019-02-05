@@ -33,7 +33,6 @@ module Games
   end
 
   private
-
   def parse_tic_tac_toe_board(board)
       p board
   end
