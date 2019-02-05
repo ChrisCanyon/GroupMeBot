@@ -3,7 +3,7 @@ module Games
 
   GAMES_COMMANDS = [:library_name, :command1, :command2, :commandX]
 
-  def Games(parameters = nil)
+  def games(parameters = nil)
     case parameters[0]
     when 'commands'
       message = "Commands: \n/" + GAMES_COMMANDS[1..(GAMES_COMMANDS.count-1)].join("\n/")
