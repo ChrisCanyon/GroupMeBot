@@ -82,7 +82,9 @@ module Games
         tmp = board
         tmp[i,j] = move_type if tmp[i,j] == '*'
         s = score_board(tmp, move_type)
+        p "score: #{s}"
         if s > best_score
+          p "new best move"
           best_board = tmp
           best_score = s
         end
