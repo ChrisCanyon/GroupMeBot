@@ -52,6 +52,7 @@ module Games
         if a
           board[i,j] = move_type
           return board
+        end
       end
     end
 
@@ -64,6 +65,7 @@ module Games
         if a
           board[i,j] = move_type
           return board
+        end
       end
     end
 
@@ -88,7 +90,7 @@ module Games
   def score_board(board, move_type)
     # create sets of scoring positions
     sets = []
-    
+
     # check rows
     board.each do |x|
       t = 0
