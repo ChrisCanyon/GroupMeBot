@@ -88,7 +88,7 @@ module Games
           p "score: #{s}"
           if s > best_score
             p "new best move"
-            best_board = tmp
+            best_board = tmp.clone
             best_score = s
           end
         end
