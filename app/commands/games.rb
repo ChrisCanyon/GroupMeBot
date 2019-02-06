@@ -80,6 +80,7 @@ module Games
     3.times do |i|
       3.times do |j|
         tmp = board
+        p "#{tmp[i,j]} == #{'*'}: #{tmp[i,j] == '*'}"
         if tmp[i,j] == '*'
           p "trying move #{i},#{j}"
           tmp[i,j] = move_type
