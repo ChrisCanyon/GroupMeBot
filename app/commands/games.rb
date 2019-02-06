@@ -48,7 +48,7 @@ module Games
       3.times do |j|
         tmp = board.map(&:dup)
         tmp[i,j] = move_type if tmp[i,j] == '*'
-        (a,b) = check_victory(board)
+        (a,b) = check_victory(tmp)
         if a
           board[i,j] = move_type
           return board
@@ -57,11 +57,14 @@ module Games
     end
 
     # check if they have a winning move
+    p "Checking if #{other_move(move_type)} has a winning move\n"
     3.times do |i|
       3.times do |j|
+        p "checking [#{i}][#{j}]\n"
         tmp = board.map(&:dup)
         tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
-        (a,b) = check_victory(board)
+        (a,b) = check_victory(tmp)
+        p ""
         if a
           board[i,j] = move_type
           return board
@@ -80,16 +83,10 @@ module Games
     3.times do |i|
       3.times do |j|
         tmp = board.map(&:dup)
-        p "tmp: #{tmp}"
-        p "board: #{board}"
-        p "#{tmp[i][j]} == #{'*'}: #{tmp[i,j] == '*'}"
         if tmp[i][j] == '*'
-          p "trying move #{i},#{j}"
           tmp[i][j] = move_type
           s = score_board(tmp, move_type)
-          p "score: #{s}"
           if s > best_score
-            p "new best move"
             best_board = tmp.map(&:dup)
             best_score = s
           end
@@ -109,6 +106,7 @@ module Games
     return true
   end
 
+#TODO: set set score = 0 of other_move is in the set
   def score_board(board, move_type)
     # create sets of scoring positions
     p "checking board: #{board}"
