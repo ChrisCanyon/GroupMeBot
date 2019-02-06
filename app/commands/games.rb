@@ -105,6 +105,7 @@ module Games
 
   def score_board(board, move_type)
     # create sets of scoring positions
+    p "checking board: #{board}"
     sets = []
 
     # check rows
