@@ -46,7 +46,7 @@ module Games
     # check if i have a winning move
     3.times do |i|
       3.times do |j|
-        tmp = board.clone
+        tmp = board.map(&:dup)
         tmp[i,j] = move_type if tmp[i,j] == '*'
         (a,b) = check_victory(board)
         if a
@@ -59,7 +59,7 @@ module Games
     # check if they have a winning move
     3.times do |i|
       3.times do |j|
-        tmp = board.clone
+        tmp = board.map(&:dup)
         tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
         (a,b) = check_victory(board)
         if a
@@ -79,7 +79,7 @@ module Games
     best_score = 0
     3.times do |i|
       3.times do |j|
-        tmp = board.clone
+        tmp = board.map(&:dup)
         p "tmp: #{tmp}"
         p "board: #{board}"
         p "#{tmp[i][j]} == #{'*'}: #{tmp[i,j] == '*'}"
@@ -90,7 +90,7 @@ module Games
           p "score: #{s}"
           if s > best_score
             p "new best move"
-            best_board = tmp.clone
+            best_board = tmp.map(&:dup)
             best_score = s
           end
         end
