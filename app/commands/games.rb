@@ -63,6 +63,7 @@ module Games
         p "checking [#{i}][#{j}]\n"
         tmp = board.map(&:dup)
         tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
+        p "tmp: #{tmp}"
         (a,b) = check_victory(tmp)
         p "[#{i}][#{j}] causes a win: #{a}\n"
         if a
@@ -110,16 +111,13 @@ module Games
 #TODO: set set score = 0 of other_move is in the set
   def score_board(board, move_type)
     # create sets of scoring positions
-    p "checking board: #{board}"
     sets = []
 
     # check rows
     board.each do |x|
       t = 0
       x.each do |y|
-        p "#{y} == #{move_type}: #{y == move_type}"
         if (y == move_type)
-          p "incremening t"
           t += 1
         end
       end
@@ -149,7 +147,6 @@ module Games
     sets.push(t)
 
     #compute final score
-    p "score sets: #{sets}"
     finalScore = 0
     sets.each do |x|
       finalScore += (x * 10) ** 2
