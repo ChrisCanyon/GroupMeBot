@@ -24,7 +24,8 @@ module Games
     end
 
     board = parse_tic_tac_toe_board(parameters[1..(parameters.count-1)])
-    return send_message(@bot.bot_id, "You win") if check_victory(board)
+    (win, type) = check_victory(board)
+    return send_message(@bot.bot_id, "#{type} wins") if win
 
     message = "+play_tic_tac_toe "
     move_type = parameters[0].upcase
@@ -42,39 +43,122 @@ module Games
 
   private
   def make_move(board, move_type)
-    # this is where logic goes to make a move
-    3.times do |x|
-      3.times do |y|
-        if board[x][y] == '*'
-          board[x][y] = move_type
-          return board;
+    # check if i have a winning move
+    3.times do |i|
+      3.times do |j|
+        tmp = board
+        tmp[i,j] = move_type if tmp[i,j] == '*'
+        (a,b) = check_victory(board)
+        if a
+          board[i,j] = move_type
+          return board
+      end
+    end
+
+    # check if they have a winning move
+    3.times do |i|
+      3.times do |j|
+        tmp = board
+        tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
+        (a,b) = check_victory(board)
+        if a
+          board[i,j] = move_type
+          return board
+      end
+    end
+
+    # if there isnt a forced move do my own move
+    best_board = nil
+    best_score = 0
+    3.times do |i|
+      3.times do |j|
+        tmp = board
+        tmp[i,j] = move_type if tmp[i,j] == '*'
+        s = score(tmp)
+        if s > best_score
+          best_board = tmp
+          best_score = s
         end
       end
     end
-    return board
+
+    return best_board
+  end
+
+  def score_board(board, move_type)
+    # create sets of scoring positions
+    sets = []
+    
+    # check rows
+    board.each do |x|
+      t = 0
+      x.each do |y|
+        if (y == move_type)
+          t += 1
+        end
+      end
+      sets.push(t)
+    end
+
+    #check columns
+    3.times do |i|
+      t = 0
+      t += 1 if (board[0][i] == move_type)
+      t += 1 if (board[1][i] == move_type)
+      t += 1 if (board[2][i] == move_type)
+      sets.push(t)
+    end
+
+    #check diagonals
+    t = 0
+    t += 1 if (board[0][0] == move_type)
+    t += 1 if (board[1][1] == move_type)
+    t += 1 if (board[2][2] == move_type)
+    sets.push(t)
+
+    t = 0
+    t += 1 if (board[0][2] == move_type)
+    t += 1 if (board[1][1] == move_type)
+    t += 1 if (board[2][0] == move_type)
+    sets.push(t)
+
+    #compute final score
+    finalScore = 0
+    sets.each do |x|
+      finalScore += (x * 10) ** 2
+    end
+    return finalScore
+  end
+
+  def other_move(move_type)
+    if(move_type == 'X')
+      return 'O'
+    else
+      return 'X'
+    end
   end
 
   def check_victory(board)
     # check rows
     board.each do |x|
       if (x[0] == x[1] && x[1] == x[2] && x[0] != '*')
-        return true
+        return true, x[0]
       end
     end
     # check columns
     3.times do |i|
       if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != '*')
-        return true
+        return true, board[0][i]
       end
     end
     # check diagonals
     if(board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != '*')
-      return true
+      return true, board[0][0]
     end
     if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != '*')
-      return true
+      return true, board[0][2]
     end
-    return false
+    return false, nil
   end
 
   def parse_tic_tac_toe_board(board)
