@@ -13,7 +13,7 @@ module Games
 
   def start_tic_tac_toe(parameters = nil)
     board = "*|*|*\n*|*|*\n*|*|*\n"
-    message = "/play_tic_tac_toe X\n" + board
+    message = "+play_tic_tac_toe X\n" + board
     send_message(@bot.bot_id, message)
   end
 
@@ -27,7 +27,7 @@ module Games
     (win, type) = check_victory(board)
     return send_message(@bot.bot_id, "#{type} wins") if win
 
-    message = "/play_tic_tac_toe "
+    message = "+play_tic_tac_toe "
     move_type = parameters[0].upcase
     if (move_type == 'X')
       message += "O\n"
@@ -57,17 +57,12 @@ module Games
     end
 
     # check if they have a winning move
-    p "Checking if #{other_move(move_type)} has a winning move\n"
     3.times do |i|
       3.times do |j|
-        p "checking [#{i}][#{j}]\n"
         tmp = board.map(&:dup)
         tmp[i][j] = other_move(move_type) if tmp[i][j] == '*'
-        p "tmp: #{tmp}"
         (a,b) = check_victory(tmp)
-        p "[#{i}][#{j}] causes a win: #{a}\n"
         if a
-          p "Blocking winning move\n"
           board[i][j] = move_type
           return board
         end
