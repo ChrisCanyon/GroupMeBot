@@ -141,6 +141,7 @@ module Games
     sets.push(t)
 
     #compute final score
+    p "score sets: #{sets}"
     finalScore = 0
     sets.each do |x|
       finalScore += (x * 10) ** 2
