@@ -81,7 +81,7 @@ module Games
       3.times do |j|
         tmp = board
         tmp[i,j] = move_type if tmp[i,j] == '*'
-        s = score_board(tmp)
+        s = score_board(tmp, move_type)
         if s > best_score
           best_board = tmp
           best_score = s
