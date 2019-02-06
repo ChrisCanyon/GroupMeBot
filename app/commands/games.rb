@@ -46,7 +46,7 @@ module Games
     # check if i have a winning move
     3.times do |i|
       3.times do |j|
-        tmp = board
+        tmp = board.clone
         tmp[i,j] = move_type if tmp[i,j] == '*'
         (a,b) = check_victory(board)
         if a
@@ -59,7 +59,7 @@ module Games
     # check if they have a winning move
     3.times do |i|
       3.times do |j|
-        tmp = board
+        tmp = board.clone
         tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
         (a,b) = check_victory(board)
         if a
@@ -81,6 +81,7 @@ module Games
       3.times do |j|
         tmp = board.clone
         p "tmp: #{tmp}"
+        p "board: #{board}"
         p "#{tmp[i][j]} == #{'*'}: #{tmp[i,j] == '*'}"
         if tmp[i][j] == '*'
           p "trying move #{i},#{j}"
