@@ -112,7 +112,7 @@ module Games
     board.each do |x|
       t = 0
       x.each do |y|
-        p "y == move_type: #{y == move_type}"
+        p "#{y} == #{move_type}: #{y == move_type}"
         if (y == move_type)
           p "incremening t"
           t += 1
