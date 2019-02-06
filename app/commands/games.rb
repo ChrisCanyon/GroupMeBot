@@ -64,8 +64,9 @@ module Games
         tmp = board.map(&:dup)
         tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
         (a,b) = check_victory(tmp)
-        p ""
+        p "[#{i}][#{j}] causes a win: #{a}\n"
         if a
+          p "Blocking winning move\n"
           board[i,j] = move_type
           return board
         end
