@@ -141,6 +141,8 @@ module Games
     t += 1 if (board[2][0] == move_type)
     sets.push(t)
 
+    t = 5
+
     #compute final score
     p "score sets: #{sets}"
     finalScore = 0
