@@ -80,13 +80,16 @@ module Games
     3.times do |i|
       3.times do |j|
         tmp = board
-        tmp[i,j] = move_type if tmp[i,j] == '*'
-        s = score_board(tmp, move_type)
-        p "score: #{s}"
-        if s > best_score
-          p "new best move"
-          best_board = tmp
-          best_score = s
+        if tmp[i,j] == '*'
+          p "trying move #{i},#{j}"
+          tmp[i,j] = move_type
+          s = score_board(tmp, move_type)
+          p "score: #{s}"
+          if s > best_score
+            p "new best move"
+            best_board = tmp
+            best_score = s
+          end
         end
       end
     end
