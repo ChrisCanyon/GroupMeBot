@@ -47,10 +47,10 @@ module Games
     3.times do |i|
       3.times do |j|
         tmp = board.map(&:dup)
-        tmp[i,j] = move_type if tmp[i,j] == '*'
+        tmp[i][j] = move_type if tmp[i,j] == '*'
         (a,b) = check_victory(tmp)
         if a
-          board[i,j] = move_type
+          board[i][j] = move_type
           return board
         end
       end
@@ -62,13 +62,13 @@ module Games
       3.times do |j|
         p "checking [#{i}][#{j}]\n"
         tmp = board.map(&:dup)
-        tmp[i,j] = other_move(move_type) if tmp[i,j] == '*'
+        tmp[i][j] = other_move(move_type) if tmp[i,j] == '*'
         p "tmp: #{tmp}"
         (a,b) = check_victory(tmp)
         p "[#{i}][#{j}] causes a win: #{a}\n"
         if a
           p "Blocking winning move\n"
-          board[i,j] = move_type
+          board[i][j] = move_type
           return board
         end
       end
