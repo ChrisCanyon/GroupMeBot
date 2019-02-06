@@ -112,7 +112,9 @@ module Games
     board.each do |x|
       t = 0
       x.each do |y|
+        p "y == move_type: #{y == move_type}"
         if (y == move_type)
+          p "incremening t"
           t += 1
         end
       end
@@ -140,8 +142,6 @@ module Games
     t += 1 if (board[1][1] == move_type)
     t += 1 if (board[2][0] == move_type)
     sets.push(t)
-
-    t = 5
 
     #compute final score
     p "score sets: #{sets}"
