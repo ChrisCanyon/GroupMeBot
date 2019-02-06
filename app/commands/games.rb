@@ -79,7 +79,7 @@ module Games
     best_score = 0
     3.times do |i|
       3.times do |j|
-        tmp = board
+        tmp = board.clone
         p "#{tmp[i][j]} == #{'*'}: #{tmp[i,j] == '*'}"
         if tmp[i][j] == '*'
           p "trying move #{i},#{j}"
