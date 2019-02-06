@@ -69,6 +69,11 @@ module Games
       end
     end
 
+    if board_empty?(board)
+      board[0][0] = move_type
+      return board
+    end
+
     # if there isnt a forced move do my own move
     best_board = nil
     best_score = 0
@@ -76,7 +81,7 @@ module Games
       3.times do |j|
         tmp = board
         tmp[i,j] = move_type if tmp[i,j] == '*'
-        s = score(tmp)
+        s = score_board(tmp)
         if s > best_score
           best_board = tmp
           best_score = s
@@ -85,6 +90,15 @@ module Games
     end
 
     return best_board
+  end
+
+  def board_empty?(board)
+    3.times do |i|
+      3.times do |j|
+        return false if board[i][j] != '*'
+      end
+    end
+    return true
   end
 
   def score_board(board, move_type)
