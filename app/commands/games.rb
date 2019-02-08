@@ -82,8 +82,10 @@ module Games
         tmp = board.map(&:dup)
         if tmp[i][j] == '*'
           tmp[i][j] = move_type
-          s = score_board(tmp, move_type)
-          if s > best_score
+          score = score_board(tmp, move_type)
+          opponent_score = score_board(make_move(tmp, other_move(move_type)), other_move(move_type))
+          score = score - opponent_score
+          if score > best_score
             best_board = tmp.map(&:dup)
             best_score = s
           end
