@@ -85,7 +85,7 @@ module Games
         if tmp[i][j] == '*'
           tmp[i][j] = move_type
           score = score_board(tmp, move_type)
-          opponent_score = score_board(make_move(tmp, other_move(move_type)), other_move(move_type))
+          opponent_score = score_board(make_move(tmp.map(&:dup), other_move(move_type)), other_move(move_type))
           score = score - opponent_score
           if score > best_score
             best_board = tmp.map(&:dup)
