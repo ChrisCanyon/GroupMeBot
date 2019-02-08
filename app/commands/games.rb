@@ -27,6 +27,8 @@ module Games
     (win, type) = check_victory(board)
     return send_message(@bot.bot_id, "#{type} wins") if win
 
+    return send_message(@bot.bot_id, "Cat's game") if board_full?(board)
+
     message = "+play_tic_tac_toe "
     move_type = parameters[0].upcase
     if (move_type == 'X')
@@ -94,6 +96,15 @@ module Games
     end
 
     return best_board
+  end
+
+  def board_full?(board)
+    3.times do |i|
+      3.times do |j|
+        return false if board[i][j] == '*'
+      end
+    end
+    return true
   end
 
   def board_empty?(board)
