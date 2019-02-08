@@ -95,7 +95,7 @@ module Games
       end
     end
 
-    return best_board
+    return best_board.map(&:dup)
   end
 
   def board_full?(board)
