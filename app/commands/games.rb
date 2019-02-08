@@ -75,7 +75,7 @@ module Games
     end
 
     # if there isnt a forced move do my own move
-    best_board = nil
+    best_board = board
     best_score = 0
     3.times do |i|
       3.times do |j|
