@@ -87,7 +87,7 @@ module Games
           score = score - opponent_score
           if score > best_score
             best_board = tmp.map(&:dup)
-            best_score = s
+            best_score = score
           end
         end
       end
