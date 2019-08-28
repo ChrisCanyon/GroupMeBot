@@ -19,6 +19,7 @@ module Api
 
       def get_bot
         return @group.bot if @group.bot.present?
+        p "Creating new bot with id: #{params[:bot_id]}"
         Bot.create(group: @group, bot_id: params[:bot_id])
       end
 
@@ -38,10 +39,6 @@ module Api
 
       PARSING_LIBRARIES = []
       def process_message
-        p @bot
-        p @group
-        p ""
-        p ""
         text = params[:text].downcase
         (@bot.active_libraries & PARSING_LIBRARIES).each do |library|
           parse_text(library, text)
