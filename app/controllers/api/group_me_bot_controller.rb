@@ -38,6 +38,10 @@ module Api
 
       PARSING_LIBRARIES = []
       def process_message
+        p @bot
+        p @group
+        p ""
+        p ""
         text = params[:text].downcase
         (@bot.active_libraries & PARSING_LIBRARIES).each do |library|
           parse_text(library, text)
