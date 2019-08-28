@@ -29,8 +29,8 @@ module Api
       def get_group_member
         member = @group.group_members.find_or_create_by(group: @group, user: @user, external_id: 1)
         return member unless member.name != params[:name]
-        member.name = params[:name]
         member.old_names << member.name
+        member.name = params[:name]
         member.save
         member
       end
