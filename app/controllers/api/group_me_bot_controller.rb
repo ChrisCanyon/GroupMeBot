@@ -19,6 +19,7 @@ module Api
 
       def get_bot
         return @group.bot if @group.bot.present?
+        p "Creating new bot with id: #{params[:bot_id]}"
         Bot.create(group: @group, bot_id: params[:bot_id])
       end
 
@@ -27,7 +28,7 @@ module Api
       end
 
       def get_group_member
-        member = @group.group_members.find_or_create_by(group: @group, user: @user, external_id: 1)
+        member = @group.group_members.find_or_create_by(group: @group, user: @user)
         return member unless member.name != params[:name]
         member.old_names << member.name
         member.name = params[:name]
